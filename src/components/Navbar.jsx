@@ -59,11 +59,13 @@ function Navbar() {
       <div className="container mx-auto flex justify-between items-center md:py-4 px-6">
         {/* Logo */}
         <div className="flex items-center space-x-4">
-         <Link to="/"> <img
-            src={logo}
-            alt="Shri Balaji Enterprises Logo"
-            className="h-[4.5rem] w-[10.5rem] object-contain"
-          />
+          <Link to="/">
+            {" "}
+            <img
+              src={logo}
+              alt="Shri Balaji Enterprises Logo"
+              className="h-[4.5rem] w-[10.5rem] object-contain"
+            />
           </Link>
         </div>
         {/* Navigation Links (Desktop) */}
@@ -110,7 +112,7 @@ function Navbar() {
 
             {/* Main Dropdown Menu */}
             <ul
-              className={`absolute left-0 top-full mt-2 w-56 bg-white shadow-md z-10 ${
+              className={`absolute left-0 top-full mt-2 w-56 bg-white shadow-md z-[50] ${
                 isDropdownOpen ? "block" : "hidden"
               }`}
             >
@@ -130,12 +132,12 @@ function Navbar() {
                         to="/products/super-jumbo-steel"
                         className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
                       >
-                        Super Jumbo Steel 
+                        Super Jumbo Steel
                       </Link>
                     </li>
                     <li>
                       <Link
-                        to="/products/prince-jumbbo-steel"
+                        to="/products/prince-jumbo-steel"
                         className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
                       >
                         Prince Jumbo Steel
@@ -281,7 +283,9 @@ function Navbar() {
             </a>
           </div>
           <div>
-            <p className="text-sm font-bold text-gray-800 font-montserrat" >Call Us Now</p>
+            <p className="text-sm font-bold text-gray-800 font-montserrat">
+              Call Us Now
+            </p>
             <a
               href="tel:+919971586369"
               className="text-sm text-gray-600 hover:text-green-500 transition duration-300 font-montserrat"
@@ -349,12 +353,12 @@ function Navbar() {
                         to="/products/super-jumbo-steel"
                         className="block px-4 py-2 hover:bg-[#2ba5bd] border-t-[1px] border-b-[1px] border-dashed border-black/50"
                       >
-                        Super Jumbo Steel 
+                        Super Jumbo Steel
                       </Link>
                     </li>
                     <li>
                       <Link
-                        to="/products/prince-jumbbo-steel"
+                        to="/products/prince-jumbo-steel"
                         className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
                       >
                         Prince Jumbo Steel

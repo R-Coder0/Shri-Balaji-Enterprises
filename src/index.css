@@ -10,12 +10,12 @@ html,
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: hidden; 
 }
 
 .container {
   max-width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 h1, h2{
   font-family: 'Montserrat', sans-serif;

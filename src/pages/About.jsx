@@ -39,13 +39,13 @@ const About = () => {
         {/* Content */}
         <div className="relative z-10 px-4 md:px-0 font-montserrat">
           <h1
-            className="text-4xl md:text-6xl font-extrabold mb-4 font-montserrat"
+            className="text-[2rem] md:text-6xl font-extrabold mb-4 font-montserrat"
             data-aos="fade-down"
           >
             About Shri Balaji Enterprises
           </h1>
           <p
-            className="text-base md:text-lg max-w-3xl mx-auto leading-relaxed font-montserrat"
+            className="text-[0.72rem] md:text-lg max-w-3xl mx-auto leading-relaxed font-montserrat"
             data-aos="fade-down"
             data-aos-delay="100"
           >

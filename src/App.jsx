@@ -32,12 +32,13 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/products/super-jumbo-steel" element= {<SuperJumbosteel/>}/>
-          <Route path="/products/prince-jumbbo-steel" element= {<PrinceJumbosteel/>}/>
+          <Route path="/products/prince-jumbo-steel" element= {<PrinceJumbosteel/>}/>
           <Route path="/products/super-jumbo-white" element= {<SuperJumbowhite/>}/>
           <Route path="/products/prince-jumbo-white" element = {<PrinceJumbowhite/>}/>
           <Route path="/products/double-fold-drying-stand" element = {<DoubleFoldstand/>} />
           <Route path="/products/triple-fold-drying-stand" element = {<TripleFoldstand/>} />
           <Route path="/products/404-upcomming-product" element= {<NotFoundPage/>}/>
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
       <FloatingButtons/>
