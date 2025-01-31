@@ -1,28 +1,28 @@
 import "../styles/testimonial.css";
 const testimonials = [
   {
-    text: "The Properties and Builders made our home-buying experience seamless. Their professionalism and attention to detail ensured we found our dream home hassle-free. Highly recommended!",
+    text: "Shree Balaji Enterprises offers the best quality cloth drying stands! Sturdy, durable, and perfect for everyday use. I’m extremely satisfied with my purchase.",
     stars: 5,
-    author: "Amit Khurana",
-    position: "Homebuyer",
+    author: "Rajesh Verma",
+    position: "Satisfied Customer",
   },
   {
-    text: "Exceptional service from The Properties and Builders! Their team guided us through every step of the property investment process, ensuring transparency and great returns. Trusted experts!",
+    text: "The ladder I purchased from Shree Balaji Enterprises is strong, lightweight, and easy to store. Excellent quality and very safe to use. Highly recommend their products!",
     stars: 5,
-    author: "Ritika Mehta",
-    position: "Real Estate Investor",
-  },
-  {
-    text: "From start to finish, The Properties and Builders provided outstanding construction services. Our custom-built villa was completed on time and exceeded our expectations. Great workmanship!",
-    stars: 5,
-    author: "Vikas Sharma",
+    author: "Priya Malhotra",
     position: "Homeowner",
   },
   {
-    text: "Choosing The Properties and Builders for our rental property management was the best decision. Their team ensures smooth tenant dealings and maintenance. Highly professional!",
+    text: "Their shoe racks are stylish and space-saving. Now my entryway looks more organized than ever. Great design and sturdy build!",
     stars: 5,
-    author: "Neha Arora",
-    position: "Property Owner",
+    author: "Ankit Saxena",
+    position: "Customer",
+  },
+  {
+    text: "I love the ironing table from Shree Balaji Enterprises. It's well-built, adjustable, and makes ironing much easier. A must-have for every household!",
+    stars: 5,
+    author: "Meenal Agarwal",
+    position: "Home User",
   },
 ];
 const Testimonials = () => {

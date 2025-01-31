@@ -27,7 +27,11 @@ import "react-awesome-lightbox/build/style.css";
 import StickyForm from "../components/SticktForm";
 import Testimonials from "../components/Tesimonial";
 import LandingFooter from "../components/landingfooter";
-
+// Import Product Images
+import product1 from "../assets/product/SuperJumboSteel.jpg";
+import product2 from "../assets/product/DSC02702.jpg";
+import product3 from "../assets/product/PrinceJumboSteel.jpg";
+import product4 from "../assets/product/DSC02803 copy.jpg";
 // eslint-disable-next-line react/prop-types
 const CircularProgressDot = ({ isActive, autoplaySpeed }) => {
   return (
@@ -105,6 +109,7 @@ function LandingPage() {
       )
       .finally(() => setIsSubmitting(false));
   };
+
   const slides = [
     {
       title: "Slide 1",
@@ -200,6 +205,100 @@ function LandingPage() {
           ))}
         </div>
       </section>
+      {/* 🔹 Featured Product Section */}
+      <section className="py-16 font-montserrat max-w-[1440px] mx-auto">
+            <div className="container mx-auto px-6 md:px-12 lg:px-20">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-[#2ba5bd]">
+                  Our Best Products
+                </h2>
+                <p className="text-gray-600 mt-4 text-lg">
+                  Explore our top-selling products crafted with excellence.
+                </p>
+              </div>
+              {/* Product Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                {/* Product 1 */}
+                <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:-translate-y-2 transition">
+                  <img
+                    src={product1}
+                    alt="Product 1"
+                    className="w-full h-56 object-cover"
+                  />
+                  <div className="p-6 text-center">
+                    <h3 className="text-xl font-semibold">
+                      Super Jumbo Steel
+                    </h3>
+                    <a
+                      href="/contact"
+                      className="mt-4 inline-block bg-[#0e65af] hover:bg-transparent border border-[#0e65af] hover:text-black  text-white px-6 py-2  hover:bg-[#2ba5bd]"
+                    >
+                      Enquiry Now
+                    </a>
+                  </div>
+                </div>
+
+                {/* Product 2 */}
+                <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:-translate-y-2 transition">
+                  <img
+                    src={product2}
+                    alt="Product 2"
+                    className="w-full h-56 object-cover"
+                  />
+                  <div className="p-6 text-center">
+                    <h3 className="text-xl font-semibold">
+                      Super Jumbo White
+                    </h3>
+                    <a
+                      href="/contact"
+                      className="mt-4 inline-block bg-[#0e65af] hover:bg-transparent border border-[#0e65af] hover:text-black  text-white px-6 py-2  hover:bg-[#2ba5bd]"
+                    >
+                      Enquiry Now
+                    </a>
+                  </div>
+                </div>
+
+                {/* Product 3 */}
+                <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:-translate-y-2 transition">
+                  <img
+                    src={product3}
+                    alt="Product 3"
+                    className="w-full h-56 object-cover"
+                  />
+                  <div className="p-6 text-center">
+                    <h3 className="text-xl font-semibold">Prince Jumbo Steel</h3>
+                    <a
+                      href="/contact"
+                      className="mt-4 inline-block bg-[#0e65af] hover:bg-transparent border border-[#0e65af] hover:text-black  text-white px-6 py-2  hover:bg-[#2ba5bd]"
+                    >
+                      Enquiry Now
+                    </a>
+                  </div>
+                </div>
+
+                {/* Product 4 */}
+                <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:-translate-y-2 transition">
+                  <img
+                    src={product4}
+                    alt="Product 4"
+                    className="w-full h-56 object-cover"
+                  />
+                  <div className="p-6 text-center">
+                    <h3 className="text-xl font-semibold">
+                      Prince Jumbo White
+                    </h3>
+                    <a
+                      href="/contact"
+                      className="mt-4 inline-block bg-[#0e65af] hover:bg-transparent border border-[#0e65af] hover:text-black  text-white px-6 py-2  hover:bg-[#2ba5bd]"
+                    >
+                      Enquiry Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
       {/* Cards 1 */}
       <section className="py-16 bg-white  font-montserrat max-w-[1440px] mx-auto ">
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
@@ -214,6 +313,7 @@ function LandingPage() {
             </p>
           </div>
 
+        
           {/* Cards Section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8  font-montserrat">
             {/* Card 1 */}
@@ -262,9 +362,12 @@ function LandingPage() {
       </section>
 
       {/* Testimonial */}
-      <Testimonials/>
+      <Testimonials />
       {/* Contact */}
-      <section id="contact" className="py-16 bg-gray-100 font-montserrat max-w-[1440px] mx-auto">
+      <section
+        id="contact"
+        className="py-16 bg-gray-100 font-montserrat max-w-[1440px] mx-auto"
+      >
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Form Section */}
@@ -418,7 +521,7 @@ function LandingPage() {
         </div>
       </section>
       <StickyForm />
-      <LandingFooter/>
+      <LandingFooter />
     </div>
   );
 }

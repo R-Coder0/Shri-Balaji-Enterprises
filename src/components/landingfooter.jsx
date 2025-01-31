@@ -36,8 +36,8 @@ const LandingFooter = () => {
         <div>
           <h3 className="text-lg font-semibold">Business Contact Info</h3>
           <p className="mt-2 text-gray-400">
-            📍 Address: XYZ Road, City, India <br />
-            📞 Phone: <a href="tel:+911234567890" className="hover:text-white">+91 123 456 7890</a> <br />
+            📍 Address: KH. No. 494, Ground Floor, Village Siraspur, Jeewan Park, Delhi - 110042 <br />
+            📞 Phone: <a href="tel:+919971586369" className="hover:text-white">+91 9971586369</a> <br />
             ✉ Email: <a href="mailto:info@shribalajienterprises.com" className="hover:text-white">info@shribalajienterprises.com</a>
           </p>
         </div>
