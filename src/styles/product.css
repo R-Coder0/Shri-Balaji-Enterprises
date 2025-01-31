@@ -1,0 +1,22 @@
+h3, p{
+    font-family: 'Montserrat', sans-serif;
+}
+li{
+    font-family: 'Montserrat', sans-serif;
+}
+td{
+    font-family: 'Montserrat', sans-serif;
+}
+button{
+    font-family: 'Montserrat', sans-serif;
+}
+#enquiry{
+    border: 1px solid #dc2626;
+    background-color: #dc2626;
+    color: white;
+}
+
+#enquiry:hover{
+    background: transparent;
+    color: #dc2626;;
+}
