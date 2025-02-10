@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 import productImage from "../assets/Product/SuperJumboSteel.jpg";
-import heroBackground from "../assets/hero1.jpg";
 import RequestForm from "../components/RequestForm";
 import RequestCallForm from "../components/RequestCallForm";
 import "../styles/product.css";
@@ -70,7 +69,7 @@ const SuperJumboSteelClothDryingStand = () => {
       {/* Hero Section */}
       <section
         className="relative bg-cover bg-center text-white text-center h-[40vh] flex flex-col justify-center"
-        style={{ backgroundImage: `url(${heroBackground})` }}
+        style={{ background:'white' }}
       >
         <div className="bg-black bg-opacity-50 absolute inset-0"></div>
         <div className="relative z-10">
@@ -159,10 +158,6 @@ const SuperJumboSteelClothDryingStand = () => {
           <h3 className="text-2xl font-bold text-gray-900 mb-6  font-montserrat">
             Super Jumbo Steel
           </h3>
-          <p className="text-xl text-red-600 font-bold mb-4 font-montserrat">
-          800-2500 INR/Unit
-          </p>
-
           {/* Product Details Table */}
           <div className="mb-6">
             <h4 className="text-xl font-semibold text-gray-800 mb-4">
@@ -279,14 +274,6 @@ const SuperJumboSteelClothDryingStand = () => {
           </h3>
           <table className="w-full text-left border-collapse mb-6">
             <tbody>
-              <tr>
-                <td className="border-b border-gray-300 py-2 pr-4 font-medium text-gray-800">
-                  Price
-                </td>
-                <td className="border-b border-gray-300 py-2 text-gray-600">
-                800-2500 INR/Unit
-                </td>
-              </tr>
               <tr>
                 <td className="border-b border-gray-300 py-2 pr-4 font-medium text-gray-800">
                   Weight

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import productImage from "../assets/product/DSC02791 copy.jpg"; // Replace with your product image path
-import heroBackground from "../assets/hero1.jpg";
 import RequestForm from "../components/RequestForm";
 import RequestCallForm from "../components/RequestCallForm";
 import "../styles/product.css";
@@ -73,7 +72,7 @@ const ShoeRackWhite = () => {
         {/* Hero Section */}
         <section
           className="relative bg-cover bg-center text-white text-center h-[40vh] flex flex-col justify-center"
-          style={{ backgroundImage: `url(${heroBackground})` }}
+          style={{ background:'white' }}
         >
           <div className="bg-black bg-opacity-50 absolute inset-0"></div>
           <div className="relative z-10">

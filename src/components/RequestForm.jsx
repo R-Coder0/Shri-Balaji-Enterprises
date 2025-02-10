@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
-import image from "../assets/Gallery/61I9ViL4c1L.jpg";
+import image from "../assets/product/SuperJumboSteel.jpg";
 
 const RequestForm = ({ onClose }) => {
   const [formData, setFormData] = useState({

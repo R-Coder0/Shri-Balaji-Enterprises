@@ -1,4 +1,4 @@
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa"; // Importing social media and contact icons
+import { FaFacebook, FaLinkedin, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa"; // Importing social media and contact icons
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -14,16 +14,10 @@ const Footer = () => {
               We are a company committed to delivering top-quality services with a focus on customer satisfaction.
             </p>
             <div className="flex space-x-4">
-              <a href="https://facebook.com" className="text-white hover:text-yellow-500 transition duration-300">
+              <a href="https://www.facebook.com/profile.php?id=61571119231209" className="text-white hover:text-yellow-500 transition duration-300">
                 <FaFacebook size={24} />
               </a>
-              <a href="https://twitter.com" className="text-white hover:text-yellow-500 transition duration-300">
-                <FaTwitter size={24} />
-              </a>
-              <a href="https://instagram.com" className="text-white hover:text-yellow-500 transition duration-300">
-                <FaInstagram size={24} />
-              </a>
-              <a href="https://linkedin.com" className="text-white hover:text-yellow-500 transition duration-300">
+              <a href="https://wa.me/+919971586369" className="text-white hover:text-yellow-500 transition duration-300">
                 <FaLinkedin size={24} />
               </a>
             </div>

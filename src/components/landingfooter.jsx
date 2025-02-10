@@ -1,4 +1,4 @@
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
+import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
 
 const LandingFooter = () => {
   return (
@@ -9,16 +9,13 @@ const LandingFooter = () => {
         <div className="mb-6 md:mb-0">
           <h3 className="text-lg font-semibold">Follow Us</h3>
           <div className="flex space-x-4 mt-2">
-            <a href="#" className="text-gray-400 hover:text-white text-xl">
+            <a href="https://www.facebook.com/profile.php?id=61571119231209" className="text-gray-400 hover:text-white text-xl">
               <FaFacebookF />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white text-xl">
+            {/* <a href="#" className="text-gray-400 hover:text-white text-xl">
               <FaInstagram />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white text-xl">
-              <FaLinkedinIn />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white text-xl">
+            </a> */}
+            <a href="https://wa.me/+919971586369" className="text-gray-400 hover:text-white text-xl">
               <FaWhatsapp />
             </a>
           </div>

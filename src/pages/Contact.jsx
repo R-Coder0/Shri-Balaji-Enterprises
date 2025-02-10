@@ -7,7 +7,7 @@ import {
   FaFacebookSquare,
   FaInstagram,
 } from "react-icons/fa";
-import heroImage from "../assets/hero1.jpg";
+import heroImage from "../assets/banner.svg";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -58,7 +58,7 @@ const Contact = () => {
       <section className="relative text-white py-32 md:py-40 flex items-center justify-center font-montserrat">
         {/* Background Image with Gradient Overlay */}
         <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center"
+          className="absolute inset-0 w-full h-full bg-contain bg-center"
           style={{
             backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(${heroImage})`,
             backgroundAttachment: "fixed",

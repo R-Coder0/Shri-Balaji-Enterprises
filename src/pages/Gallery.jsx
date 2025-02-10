@@ -3,11 +3,11 @@ import Lightbox from "react-awesome-lightbox";
 import "react-awesome-lightbox/build/style.css";
 import Masonry from "react-masonry-css"; // Import Masonry layout
 import '../styles/gallery.css'
-import heroImage from '../assets/hero1.jpg'
+import heroImage from '../assets/banner.svg'
 function Gallery() {
   // Dynamically import all images
   const images = Object.values(
-    import.meta.glob("../assets/Gallery/*.{jpg,jpeg,png,webp}", { eager: true })
+    import.meta.glob("../assets/product/*.{jpg,jpeg,png,webp}", { eager: true })
   ).map((module) => module.default);
 
   const [lightboxIndex, setLightboxIndex] = useState(null);
@@ -33,7 +33,7 @@ function Gallery() {
       {/* Hero Section */}
       <section className="relative text-white py-32 md:py-40 flex items-center justify-center">
         <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center"
+          className="absolute inset-0 w-full h-full bg-contain bg-center"
           style={{
             backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(${heroImage})`,
             backgroundAttachment: "fixed",

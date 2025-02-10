@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
-  FaQuoteLeft,
-  FaQuoteRight,
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaEnvelope,
@@ -13,34 +11,32 @@ import {
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import hero2 from "../assets/hero1.jpg";
-import hero1 from "../assets/hero2.jpg";
-import hero3 from "../assets/hero3.jpg";
-import hero4 from "../assets/hero4.jpg";
-import phonehero1 from "../assets/PhoneHero1.jpg";
-import phonehero2 from "../assets/PhoneHero2.jpg";
-import phonehero3 from "../assets/PhoneHero3.jpg";
-import phonehero4 from "../assets/PhoneHero4.jpg";
+import hero1 from "../assets/hero1.svg";
+import hero2 from "../assets/hero2.svg";
+import hero3 from "../assets/hero3.svg";
+import hero4 from "../assets/hero4.svg";
+import phonehero1 from "../assets/1.svg";
+import phonehero2 from "../assets/2.svg";
+import phonehero3 from "../assets/3.svg";
+import phonehero4 from "../assets/4.svg";
 import About1 from "../assets/Home/about1.jpg";
 import About2 from "../assets/Home/about2.jpg";
-import service1 from "../assets/Home/service1.jpg";
-import service2 from "../assets/Home/service2.jpg";
-import service3 from "../assets/Home/service3.jpg";
-import service4 from "../assets/Home/service4.jpg";
-import service5 from "../assets/Home/service5.jpg";
-import service6 from "../assets/Home/service6.jpg";
-import testimonial from "../assets/profile.jpg";
+import service1 from "../assets/product/SuperJumboSteel.jpg";
+import service2 from "../assets/product/DSC02770.jpg";
+import service3 from "../assets/product/PrinceJumboSteel.jpg";
+import service4 from "../assets/product/DSC02803 copy.jpg";
+import service5 from "../assets/product/IrroningTable.webp";
+import service6 from "../assets/product/Ladder.jpg";
 import "../styles/Home.css";
 import RequestForm from "../components/RequestForm";
 import emailjs from "@emailjs/browser";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Lightbox from "react-awesome-lightbox";
 import "react-awesome-lightbox/build/style.css";
 import StickyForm from "../components/SticktForm";
+import TestimonialsHome from "../components/TesimonialHome";
 
 // eslint-disable-next-line react/prop-types
 const CircularProgressDot = ({ isActive, autoplaySpeed }) => {
@@ -159,6 +155,7 @@ function Home() {
         "Elegant and sturdy, the Prince Jumbo Steel Cloth Drying Stand is ideal for drying larger loads. Its compact design makes it suitable for both indoor and outdoor use.",
       image: service2,
       smallImages: [service2],
+      path: "/products/prince-jumbo-steel",
     },
     {
       id: 3,
@@ -167,6 +164,7 @@ function Home() {
         "This premium white cloth drying stand combines style with functionality, offering ample drying space for your laundry needs.",
       image: service3,
       smallImages: [service3],
+      path: "/products/super-jumbo-white",
     },
     {
       id: 4,
@@ -175,22 +173,25 @@ function Home() {
         "The Prince Jumbo White Cloth Drying Stand is a sleek and efficient solution for drying clothes. Built with durability and a modern look in mind.",
       image: service4,
       smallImages: [service4],
+      path: "/products/prince-jumbo-white",
     },
     {
       id: 5,
-      title: "Double Fold Cloth Drying Stand",
+      title: "Ironing Wood Board",
       description:
-        "A versatile double-fold design that offers maximum convenience and space efficiency for drying clothes, suitable for all spaces.",
+        "A versatile wooden ironing Board designed for maximum convenience and space efficiency, perfect for any space.",
       image: service5,
       smallImages: [service5],
+      path: "/products/ironing-table",
     },
     {
       id: 6,
-      title: "Triple Fold Cloth Drying Stand",
+      title: "Ladder",
       description:
-        "A triple-fold cloth drying stand for ultimate flexibility and space-saving. Perfect for drying a variety of clothing and linens.",
+        "A versatile aluminum ladder with a sturdy plastic top, designed for maximum convenience and space efficiency, perfect for any setting.",
       image: service6,
       smallImages: [service6],
+      path: "/products/ladder",
     },
   ];
 
@@ -212,18 +213,6 @@ function Home() {
   const closeLightbox = () => {
     setLightboxOpen(false);
   };
-  // const closeLightbox = () => {
-  //   setIsLightboxOpen(false); // Close the Lightbox
-  //   setCurrentImageIndex(""); // Reset the current image
-  // }
-
-  // const handleZoom = (image) => {
-  //   setFullscreenImage(image);
-  // };
-
-  // const closeFullscreen = () => {
-  //   setFullscreenImage(null);
-  // };
 
   const toggleRequestForm = () => {
     setShowRequestForm(!showRequestForm);
@@ -263,63 +252,15 @@ function Home() {
     return () => clearInterval(timer); // Cleanup timer on unmount
   }, [activeSlide, slides.length]);
   const partnerCompanies = [
-    { id: 1, logo: "path/to/logo1.png", name: "Partner 1" },
-    { id: 2, logo: "path/to/logo2.png", name: "Partner 2" },
-    { id: 3, logo: "path/to/logo3.png", name: "Partner 3" },
-    { id: 4, logo: "path/to/logo4.png", name: "Partner 4" },
-    { id: 5, logo: "path/to/logo5.png", name: "Partner 5" },
-    { id: 6, logo: "path/to/logo6.png", name: "Partner 6" },
+    { id: 1, name: "SANDEEP AGENCIES" },
+    { id: 2, name: "CHAUHAN SALES CORPORATION" },
+    { id: 3, name: "GURU KIRPA TRADING CO." },
+    { id: 4, name: "GANDHI CROCKERY HOUSE" },
+    { id: 5, name: "JS MOULD PRIVATE LIMITED" },
+    { id: 6, name: "MUSKAN MARKETING" },
+    { id: 7, name: "GOVIND ENTERPRISE" },
   ];
-  const testimonials = [
-    {
-      id: 1,
-      name: "Amit Verma",
-      company: "CEO, BrightTech Solutions",
-      quote:
-        "Working with this team was a game-changer for our company. Their professional services and innovative solutions helped us achieve significant growth.",
-      image: testimonial, // Replace with your image URL
-    },
-    {
-      id: 2,
-      name: "Ananya Iyer",
-      company: "Marketing Head, Zenith Enterprises",
-      quote:
-        "Their commitment to delivering quality and timely support was truly impressive. I highly recommend their services to any growing business.",
-      image: testimonial, // Replace with your image URL
-    },
-    {
-      id: 3,
-      name: "Vikram Mehta",
-      company: "Founder, InnovateX Labs",
-      quote:
-        "The team exceeded all our expectations! Their expertise and customized approach helped us streamline operations and enhance efficiency.",
-      image: testimonial, // Replace with your image URL
-    },
-    {
-      id: 4,
-      name: "Pooja Desai",
-      company: "Operations Manager, GlobalMart Pvt. Ltd.",
-      quote:
-        "Exceptional service from start to finish. The team was approachable, knowledgeable, and always ready to go the extra mile for our success.",
-      image: testimonial, // Replace with your image URL
-    },
-    {
-      id: 5,
-      name: "Arjun Kapoor",
-      company: "Director, Alpha Innovations",
-      quote:
-        "Their professionalism and attention to detail were outstanding. We witnessed a remarkable improvement in our workflow and client satisfaction.",
-      image: testimonial, // Replace with your image URL
-    },
-    {
-      id: 6,
-      name: "Meera Joshi",
-      company: "Head of Operations, Stellar Services",
-      quote:
-        "I was amazed by their dedication and expertise. Their solutions were tailor-made for our business, helping us achieve exceptional results.",
-      image: testimonial, // Replace with your image URL
-    },
-  ];
+
   const [isMobile, setIsMobile] = useState(false);
 
   // Detect screen size
@@ -335,18 +276,19 @@ function Home() {
 
   return (
     <div>
+      {/* hero section */}
       <section className="hero-section z-10 mt-[4.5rem] md:mt-24 relative">
         <Slider ref={sliderRef} {...settings}>
           {slides.map((slide, index) => (
             <div
               key={index}
-              className="relative h-[100vh] md:h-[75vh] lg:h-[60vh] xl:h-[800px] overflow-hidden"
+              className="relative h-[75vh] md:h-[75vh] lg:h-[90vh] overflow-hidden"
             >
               {/* Slide Image */}
               <img
                 src={isMobile ? slide.mobileImage : slide.desktopImage}
                 alt={slide.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover md:object-contain"
                 style={{
                   objectPosition: isMobile
                     ? "center"
@@ -355,11 +297,10 @@ function Home() {
                     : "right center", // Adjust object position based on the slide and screen size
                 }}
               />
-
-              {/* Overlay (hidden on mobile) */}
+              {/* 
               {!isMobile && (
                 <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
-              )}
+              )} */}
 
               {/* Buttons (hidden on mobile) */}
               <div
@@ -367,13 +308,13 @@ function Home() {
                   isMobile
                     ? "hidden"
                     : index % 2 === 0
-                    ? "md:bottom-[3rem] md:left-[3rem] lg:bottom-[4rem] lg:left-[5rem]"
-                    : "md:bottom-[3rem] md:right-[3rem] lg:bottom-[4rem] lg:right-[5rem]"
+                    ? "md:bottom-[3rem] md:left-[3rem] lg:bottom-[5rem] lg:left-[5rem]"
+                    : "md:bottom-[3rem] md:right-[3rem] lg:bottom-[5rem] lg:right-[5rem]"
                 } md:space-x-4`}
               >
                 {/* Enquiry Now Button */}
                 <button
-                  className="relative px-[1.2rem] py-[0.8rem] lg:px-[1.5rem] lg:py-[1rem] xl:px-[2rem] xl:py-[1.2rem] text-white hover:text-black font-medium shadow-md overflow-hidden group"
+                  className="relative px-[1.2rem] py-[0.8rem] lg:px-[1.5rem] lg:py-[1rem] xl:px-[2rem] xl:py-[1.2rem] text-[#0e65af] hover:text-black font-medium shadow-md overflow-hidden group"
                   style={{ border: "1px solid #0e65af" }}
                   onClick={toggleRequestForm}
                 >
@@ -384,7 +325,7 @@ function Home() {
                 </button>
 
                 {/* Call Now Button */}
-                <button className="relative px-[1.2rem] py-[0.8rem] lg:px-[1.5rem] lg:py-[1rem] xl:px-[2rem] xl:py-[1.2rem] text-white font-medium shadow-md border-[1px] border-[#0e65af] overflow-hidden group">
+                <button className="relative px-[1.2rem] py-[0.8rem] lg:px-[1.5rem] lg:py-[1rem] xl:px-[2rem] xl:py-[1.2rem] text-[#0e65af] font-medium shadow-md border-[1px] border-[#0e65af] overflow-hidden group">
                   <span className="absolute inset-0 bg-[#0e65af] transform translate-x-full transition-transform duration-500 ease-out group-hover:translate-x-0"></span>
                   <span className="relative z-10 group-hover:text-black transition-colors duration-300 text-sm md:text-base lg:text-lg">
                     <a href="tel:919971586369">Call Now</a>
@@ -396,7 +337,7 @@ function Home() {
         </Slider>
 
         {/* Custom Dots Section */}
-        <div className="custom-dots flex justify-center mt-[-4rem]">
+        <div className="custom-dots flex justify-center mt-0 md:mt-[-2rem]">
           {slides.map((_, index) => (
             <CircularProgressDot
               key={index}
@@ -633,7 +574,7 @@ function Home() {
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110 font-montserrat"
+                    className="w-full h-56 object-contain transition-transform duration-500 group-hover:scale-110 font-montserrat"
                   />
                 </div>
 
@@ -689,9 +630,7 @@ function Home() {
         {/* Request Form Modal */}
         {showRequestForm && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-40">
-            <div
-              className="bg-white p-0 shadow-lg relative w-full max-w-[54rem]"
-            >
+            <div className="bg-white p-0 shadow-lg relative w-full max-w-[54rem]">
               {/* No need for a separate close button here */}
               <RequestForm onClose={toggleRequestForm} />
             </div>
@@ -709,82 +648,23 @@ function Home() {
               We are proud to work with leading companies in the industry.
             </p>
           </div>
-          {/* Partner Logos Carousel */}
+          {/* Partner Names Carousel */}
           <Slider {...settings2}>
             {partnerCompanies.map((partner) => (
               <div
                 key={partner.id}
-                className="flex justify-center items-center bg-white p-4 shadow-md rounded-md font-montserrat"
+                className="flex justify-center items-center bg-white p-6 shadow-md rounded-md font-montserrat text-center border-2 border-gray-200"
               >
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="w-full h-auto max-w-[120px] mx-auto"
-                  loading="lazy"
-                />
+                <p className="text-xl font-semibold text-[#0e65af]">
+                  {partner.name}
+                </p>
               </div>
             ))}
           </Slider>
         </div>
       </section>
       {/* Testimonial */}
-      <section className="py-20 bg-gradient-to-r from-[#0e65af] to-[#2ba5bd]">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4 font-montserrat">
-              What Our Clients Say
-            </h2>
-            <p className="text-lg text-gray-200 font-montserrat">
-              Discover how our solutions have helped businesses grow and thrive.
-              Our clients&apos; success stories speak for themselves.
-            </p>
-          </div>
-
-          {/* Swiper Slider */}
-          <Swiper
-            spaceBetween={30}
-            slidesPerView={1}
-            loop={true} // Loop to enable continuous sliding
-            breakpoints={{
-              768: { slidesPerView: 2 }, // Two slides for medium screens
-              1024: { slidesPerView: 3 }, // Three slides for large screens
-            }}
-            navigation={true}
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 4000 }}
-            modules={[Navigation, Pagination, Autoplay]}
-            className="testimonial-slider"
-          >
-            {testimonials.map((testimonial) => (
-              <SwiperSlide key={testimonial.id}>
-                <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                  <div className="relative mb-6 font-montserrat">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-24 h-24 rounded-full object-cover mx-auto border-4 border-[#2ba5bd]"
-                    />
-                    <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#2ba5bd] opacity-30 rounded-full"></div>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-xl font-semibold text-gray-800 mb-4 font-montserrat">
-                      <FaQuoteLeft className="inline text-2xl text-[#0e65af] font-montserrat" />{" "}
-                      {testimonial.quote}{" "}
-                      <FaQuoteRight className="inline text-2xl text-[#0e65af]" />
-                    </p>
-                    <h4 className="text-2xl font-bold text-[#2ba5bd]">
-                      {testimonial.name}
-                    </h4>
-                    <p className="text-lg text-gray-500">
-                      {testimonial.company}
-                    </p>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </section>
+      <TestimonialsHome />
       {/* Contact */}
       <section id="contact" className="py-16 bg-gray-100 font-montserrat">
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
@@ -939,7 +819,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <StickyForm/>
+      <StickyForm />
     </div>
   );
 }

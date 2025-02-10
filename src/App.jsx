@@ -51,7 +51,7 @@ function App() {
       <Suspense fallback={<Loader />}>
         <AnimatePresence exitBeforeEnter>
           <ScrollToTop />
-          <Navbar />
+          {location.pathname !== "/landing-page" &&<Navbar /> }
           <div className="font-sans">
             <Routes>
               <Route path="/landing-page" element={<LandingPage/>}/>

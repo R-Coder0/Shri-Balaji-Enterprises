@@ -10,7 +10,7 @@ const testimonials = [
     text: "The ladder I purchased from Shree Balaji Enterprises is strong, lightweight, and easy to store. Excellent quality and very safe to use. Highly recommend their products!",
     stars: 5,
     author: "Priya Malhotra",
-    position: "Homeowner",
+    position: "Customer",
   },
   {
     text: "Their shoe racks are stylish and space-saving. Now my entryway looks more organized than ever. Great design and sturdy build!",
@@ -22,12 +22,12 @@ const testimonials = [
     text: "I love the ironing table from Shree Balaji Enterprises. It's well-built, adjustable, and makes ironing much easier. A must-have for every household!",
     stars: 5,
     author: "Meenal Agarwal",
-    position: "Home User",
+    position: "Customer",
   },
 ];
 const Testimonials = () => {
   return (
-    <div className="reviews">
+    <div className="reviews max-w-[1440px] mx-auto">
       <section
         className="testimonials-section"
         style={{

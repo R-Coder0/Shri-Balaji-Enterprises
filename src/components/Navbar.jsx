@@ -8,11 +8,14 @@ import NavbarToggle from "./NavbarToggle";
 function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Desktop: Main dropdown
   const [activeSubMenu, setActiveSubMenu] = useState(null); // Desktop: Active sub-dropdown
+  const [activeSecondSubMenu, setActiveSecondSubMenu] = useState(null); // Active second-level submenu
+  const [activeMobileSecondSubMenu, setActiveMobileSecondSubMenu] =
+    useState(null);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Mobile: Main menu state
   const [activeMenu, setActiveMenu] = useState(null); // Mobile: Tracks which main menu is open
   const [activeMobileSubMenu, setActiveMobileSubMenu] = useState(null); // Mobile: Active sub-menu
-
+  const secondMenuTimeoutRef = useRef(null);
   const dropdownTimeoutRef = useRef(null); // Timeout reference for closing menus
   // Handlers for Desktop Menu
   const handleMouseEnter = () => {
@@ -37,6 +40,20 @@ function Navbar() {
     setActiveSubMenu(null);
   };
 
+  // Second-Level Submenu Handlers
+  const handleSecondSubMenuEnter = (menuName) => {
+    if (secondMenuTimeoutRef.current) {
+      clearTimeout(secondMenuTimeoutRef.current); // Clear any pending timeout
+    }
+    setActiveSecondSubMenu(menuName);
+  };
+
+  const handleSecondSubMenuLeave = () => {
+    secondMenuTimeoutRef.current = setTimeout(() => {
+      setActiveSecondSubMenu(null);
+    }, 300);
+  };
+
   // Handlers for Mobile Menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prevState) => !prevState);
@@ -49,6 +66,15 @@ function Navbar() {
 
   const toggleMobileSubMenu = (subMenu) => {
     setActiveMobileSubMenu((prevSubMenu) =>
+      prevSubMenu === subMenu ? null : subMenu
+    );
+
+    // Prevent closing second-level submenus when opening a first-level submenu
+    setActiveMobileSecondSubMenu(null);
+  };
+
+  const toggleMobileSecondSubMenu = (subMenu) => {
+    setActiveMobileSecondSubMenu((prevSubMenu) =>
       prevSubMenu === subMenu ? null : subMenu
     );
   };
@@ -126,146 +152,221 @@ function Navbar() {
                 </button>
                 {activeSubMenu === "dryingStand" && (
                   <ul className="absolute left-full top-0 w-72 bg-white  shadow-md">
-                    <li>
-                      <Link
-                        to="/products/super-jumbo-steel"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                    <li
+                      className="relative"
+                      onMouseEnter={() =>
+                        handleSecondSubMenuEnter("JUMBOSeries")
+                      }
+                      onMouseLeave={handleSecondSubMenuLeave}
+                    >
+                      <button
+                        // to="/products/super-jumbo-steel"
+                        className="block px-4 py-2 text-gray-700 hover:bg-[#0e65af] hover:text-white w-full text-left border-b-[1px] border-dashed border-black/50"
                       >
-                        Super Jumbo Steel
-                      </Link>
+                        Jumbo Series
+                      </button>
+                      {activeSecondSubMenu === "JUMBOSeries" && (
+                        <ul className="absolute left-full top-0 mt-2 w-56 bg-white shadow-md z-[50]">
+                          <li>
+                            <Link
+                              to="/products/super-jumbo-steel"
+                              className="block px-4 border-b-[1px] border-dashed py-2 hover:bg-[#2ba5bd] border-black/50"
+                            >
+                              Super Jumbo Steel
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/prince-jumbo-steel"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Prince Jumbo Steel
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/super-jumbo-white"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Super Jumbo White
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/prince-jumbo-white"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Prince Jumbo White
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/royal-jumbo-steel"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Royal Jumbo Steel
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/royal-jumbo-white"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-dashed border-black/50"
+                            >
+                              Royal Jumbo White
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
                     </li>
-                    <li>
-                      <Link
-                        to="/products/prince-jumbo-steel"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                    <li
+                      className="relative"
+                      onMouseEnter={() =>
+                        handleSecondSubMenuEnter("SumoSeries")
+                      }
+                      onMouseLeave={handleSecondSubMenuLeave}
+                    >
+                      <button
+                        // to="/products/sumo-steel"
+                        className="block px-4 py-2 text-gray-700 hover:bg-[#0e65af] hover:text-white w-full text-left border-b-[1px] border-dashed border-black/50"
                       >
-                        Prince Jumbo Steel
-                      </Link>
+                        Sumo Series
+                      </button>
+                      {activeSecondSubMenu === "SumoSeries" && (
+                        <ul className="absolute left-full top-0 mt-2 w-56 bg-white shadow-md z-[50]">
+                          <li>
+                            <Link
+                              to="/products/sumo-steel"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Sumo Steel
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/sumo-white"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd]"
+                            >
+                              Sumo White
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
                     </li>
-                    <li>
-                      <Link
-                        to="/products/super-jumbo-white"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                    <li
+                      className="relative"
+                      onMouseEnter={() =>
+                        handleSecondSubMenuEnter("ButterFlySeries")
+                      }
+                      onMouseLeave={handleSecondSubMenuLeave}
+                    >
+                      <button
+                        // to="/products/sumo-steel"
+                        className="block px-4 py-2 text-gray-700 hover:bg-[#0e65af] hover:text-white w-full text-left border-b-[1px] border-dashed border-black/50"
                       >
-                        Super Jumbo White
-                      </Link>
+                        ButterFly Series
+                      </button>
+                      {activeSecondSubMenu === "ButterFlySeries" && (
+                        <ul className="absolute left-full top-0 mt-2 w-56 bg-white shadow-md z-[50]">
+                          <li>
+                            <Link
+                              to="/products/full-steel-butterfly"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Full Steel Butterfly
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/butterfly-white"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Butterfly White
+                            </Link>
+                          </li>
+
+                          <li>
+                            <Link
+                              to="/products/sky-high"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-dashed border-black/50"
+                            >
+                              Sky High
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
                     </li>
-                    <li>
-                      <Link
-                        to="/products/prince-jumbo-white"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                    <li
+                      className="relative"
+                      onMouseEnter={() =>
+                        handleSecondSubMenuEnter("SteelSeries")
+                      }
+                      onMouseLeave={handleSecondSubMenuLeave}
+                    >
+                      <button
+                        // to="/products/sumo-steel"
+                        className="block px-4 py-2 text-gray-700 hover:bg-[#0e65af] hover:text-white w-full text-left border-b-[1px] border-dashed border-black/50"
                       >
-                        Prince Jumbo White
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/sumo-steel"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Sumo Steel
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/sumo-white"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Sumo White
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/mini-star"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Mini Star
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/mini-star-small"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Mini Star Small
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/hard-rock"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Hard Rock
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/hard-rock-heavy"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Hard Rock Heavy
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/hard-rock-wheel"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Hard Rock with Wheel
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/bright-full-steel"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Bright Full Steel
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/full-steel-butterfly"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Full Steel Butterfly
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/butterfly-white"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Butterfly White
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/royal-jumbo-steel"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Royal Jumbo Steel
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/royal-jumbo-white"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Royal Jumbo White
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/sky-high"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Sky High
-                      </Link>
+                        Full Steel Series
+                      </button>
+                      {activeSecondSubMenu === "SteelSeries" && (
+                        <ul className="absolute left-full top-0 mt-2 w-56 bg-white shadow-md z-[50]">
+                          <li>
+                            <Link
+                              to="/products/mini-star"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Mini Star
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/mini-star-small"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Mini Star Small
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/hard-rock"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Hard Rock
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/hard-rock-heavy"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Hard Rock Heavy
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/hard-rock-wheel"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Hard Rock with Wheel
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/bright-full-steel"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Bright Full Steel
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
                     </li>
                   </ul>
                 )}
               </li>
               {/* Shoe Rack */}
+
+              {/* Second Submenu - Shoes Rack */}
               <li
                 className="relative"
                 onMouseEnter={() => handleSubMenuEnter("shoesRack")}
@@ -274,22 +375,31 @@ function Navbar() {
                 <button className="block px-4 py-2 text-gray-700 hover:bg-[#0e65af] hover:text-white w-full text-left border-b-[1px] border-dashed border-black/50">
                   Shoes Rack
                 </button>
+
                 {activeSubMenu === "shoesRack" && (
                   <ul className="absolute left-full top-0 w-48 bg-white shadow-md">
-                    <li>
-                    <Link
-                        to="/products/shoes-rack-steel"
-                        className="block px-4 py-1 hover:hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                    <li
+                      className="relative"
+                      // onMouseEnter={() =>
+                      //   handleSecondSubMenuEnter("JUMBOSteel")
+                      // }
+                      // onMouseLeave={handleSecondSubMenuLeave}
+                    >
+                      <Link
+                        to={"/products/shoes-rack-steel"}
+                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
                       >
                         Shoes Rack Steel
                       </Link>
                     </li>
+
+                    {/* Another First Level Item */}
                     <li>
-                    <Link
+                      <Link
                         to="/products/shoes-rack-white"
-                        className="block px-4 py-1 hover:hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                        className="block px-4 py-1 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
                       >
-                        Shoes Rack white
+                        Shoes Rack White
                       </Link>
                     </li>
                   </ul>
@@ -302,21 +412,12 @@ function Navbar() {
                 onMouseEnter={() => handleSubMenuEnter("clothesRack")}
                 onMouseLeave={handleSubMenuLeave}
               >
-                <Link to="/products/ladder" className="block px-4 py-2 text-gray-700 hover:bg-[#0e65af] hover:text-white w-full text-left border-b-[1px] border-dashed border-black/50">
-                Aluminium Ladder 
+                <Link
+                  to="/products/ladder"
+                  className="block px-4 py-2 text-gray-700 hover:bg-[#0e65af] hover:text-white w-full text-left border-b-[1px] border-dashed border-black/50"
+                >
+                  Aluminium Ladder
                 </Link>
-                {/* {activeSubMenu === "clothesRack" && (
-                  <ul className="absolute left-full top-0 w-48 bg-white rounded-md shadow-md">
-                    <li>
-                      <Link
-                        to="/products/Dummy"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd]"
-                      >
-                        Clothes Rack Item 1
-                      </Link>
-                    </li>
-                  </ul>
-                )} */}
               </li>
 
               {/* Ironing Table */}
@@ -325,29 +426,12 @@ function Navbar() {
                 onMouseEnter={() => handleSubMenuEnter("ironingTable")}
                 onMouseLeave={handleSubMenuLeave}
               >
-                <Link to="/products/ironing-table" className="block px-4 py-2 text-gray-700 hover:bg-[#0e65af] hover:text-white w-full text-left border-b-[1px] border-dashed border-black/50">
+                <Link
+                  to="/products/ironing-table"
+                  className="block px-4 py-2 text-gray-700 hover:bg-[#0e65af] hover:text-white w-full text-left "
+                >
                   Ironing Table
                 </Link>
-                {/* {activeSubMenu === "ironingTable" && (
-                  <ul className="absolute left-full top-0 w-52 bg-white rounded-md shadow-md">
-                    <li>
-                      <Link
-                        to="/products/Dummy"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd]"
-                      >
-                        Ironing Table Item 1
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/Dummy"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd]"
-                      >
-                        Ironing Table Item 2
-                      </Link>
-                    </li>
-                  </ul>
-                )} */}
               </li>
             </ul>
           </li>
@@ -443,141 +527,203 @@ function Navbar() {
                 </button>
                 {activeMobileSubMenu === "dryingStand" && (
                   <ul className="pl-4 space-y-1">
+                    {/* Super Jumbo Series (Second-Level) */}
                     <li>
-                      <Link
-                        to="/products/super-jumbo-steel"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-t-[1px] border-b-[1px] border-dashed border-black/50"
+                      <button
+                        onClick={() => toggleMobileSecondSubMenu("jumboSeries")}
+                        className="block px-4 py-2 hover:bg-[#2ba5bd]"
                       >
-                        Super Jumbo Steel
-                      </Link>
+                        Jumbo Series{" "}
+                        {activeMobileSecondSubMenu === "jumboSeries"
+                          ? "▲"
+                          : "▼"}
+                      </button>
+                      {activeMobileSecondSubMenu === "jumboSeries" && (
+                        <ul className="pl-4 space-y-1">
+                          <li>
+                            <Link
+                              to="/products/super-jumbo-steel"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Super Jumbo Steel
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/prince-jumbo-steel"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Prince Jumbo Steel
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/super-jumbo-white"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Super Jumbo White
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/prince-jumbo-white"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Prince Jumbo White
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/royal-jumbo-steel"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Royal Jumbo Steel
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/royal-jumbo-white"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Royal Jumbo White
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
                     </li>
                     <li>
-                      <Link
-                        to="/products/prince-jumbo-steel"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                      <button
+                        onClick={() => toggleMobileSecondSubMenu("sumoSeries")}
+                        className="block px-4 py-2 hover:bg-[#2ba5bd]"
                       >
-                        Prince Jumbo Steel
-                      </Link>
+                        Sumo Series{" "}
+                        {activeMobileSecondSubMenu === "sumoSeries" ? "▲" : "▼"}
+                      </button>
+                      {activeMobileSecondSubMenu === "sumoSeries" && (
+                        <ul className="pl-4 space-y-1">
+                          <li>
+                            <Link
+                              to="/products/sumo-steel"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Sumo Steel
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/sumo-white"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Sumo White
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
                     </li>
                     <li>
-                      <Link
-                        to="/products/super-jumbo-white"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                      <button
+                        onClick={() =>
+                          toggleMobileSecondSubMenu("butterflySeries")
+                        }
+                        className="block px-4 py-2 hover:bg-[#2ba5bd]"
                       >
-                        Super Jumbo White
-                      </Link>
+                        Butterfly Series{" "}
+                        {activeMobileSecondSubMenu === "butterflySeries"
+                          ? "▲"
+                          : "▼"}
+                      </button>
+                      {activeMobileSecondSubMenu === "butterflySeries" && (
+                        <ul className="pl-4 space-y-1">
+                          <li>
+                            <Link
+                              to="/products/full-steel-butterfly"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Full Steel Butterfly
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/butterfly-white"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Butterfly White
+                            </Link>
+                          </li>
+
+                          <li>
+                            <Link
+                              to="/products/sky-high"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Sky High
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
                     </li>
                     <li>
-                      <Link
-                        to="/products/prince-jumbo-white"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                      <button
+                        onClick={() => toggleMobileSecondSubMenu("steelSeries")}
+                        className="block px-4 py-2 hover:bg-[#2ba5bd]"
                       >
-                        Prince Jumbo White
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/sumo-steel"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Sumo Steel
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/sumo-white"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Sumo White
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/mini-star"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Mini Star
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/mini-star-small"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Mini Star Small
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/hard-rock"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Hard Rock
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/hard-rock-heavy"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Hard Rock Heavy
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/hard-rock-wheel"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Hard Rock with Wheel
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/bright-full-steel"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Bright Full Steel
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/full-steel-butterfly"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Full Steel Butterfly
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/butterfly-white"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Butterfly White
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/royal-jumbo-steel"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Royal Jumbo Steel
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/royal-jumbo-white"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Royal Jumbo White
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/products/sky-high"
-                        className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
-                      >
-                        Sky High
-                      </Link>
+                        Full Steel Series{" "}
+                        {activeMobileSecondSubMenu === "steelSeries"
+                          ? "▲"
+                          : "▼"}
+                      </button>
+                      {activeMobileSecondSubMenu === "steelSeries" && (
+                        <ul className="pl-4 space-y-1">
+                          <li>
+                            <Link
+                              to="/products/mini-star"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Mini Star
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/mini-star-small"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Mini Star Small
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/hard-rock"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Hard Rock
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/hard-rock-heavy"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Hard Rock Heavy
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/hard-rock-wheel"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Hard Rock with Wheel
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products/bright-full-steel"
+                              className="block px-4 py-2 hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
+                            >
+                              Bright Full Steel
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
                     </li>
                   </ul>
                 )}
@@ -593,7 +739,7 @@ function Navbar() {
                 {activeMobileSubMenu === "shoesRack" && (
                   <ul className="pl-4 space-y-1">
                     <li>
-                    <Link
+                      <Link
                         to="/products/shoes-rack-steel"
                         className="block px-4 py-1 hover:hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
                       >
@@ -601,7 +747,7 @@ function Navbar() {
                       </Link>
                     </li>
                     <li>
-                    <Link
+                      <Link
                         to="/products/shoes-rack-white"
                         className="block px-4 py-1 hover:hover:bg-[#2ba5bd] border-b-[1px] border-dashed border-black/50"
                       >
@@ -614,7 +760,8 @@ function Navbar() {
 
               {/* Clothes Rack */}
               <li className="pt-[5px]">
-                <Link to="/products/ladder"
+                <Link
+                  to="/products/ladder"
                   onClick={() => toggleMobileSubMenu("clothesRack")}
                   className="w-full text-left px-4 py-2 hover:text-green-500"
                 >
@@ -635,7 +782,8 @@ function Navbar() {
               </li>
               {/* Irroning Table Rack */}
               <li className="pt-[8px]">
-                <Link to= "/products/ironing-table"
+                <Link
+                  to="/products/ironing-table"
                   onClick={() => toggleMobileSubMenu("ironingTable")}
                   className="w-full text-left px-4 py-2 hover:text-green-500"
                 >
@@ -656,7 +804,6 @@ function Navbar() {
               </li>
 
               {/* Shoes Rack */}
-              
             </ul>
           )}
         </li>

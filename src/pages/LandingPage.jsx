@@ -10,14 +10,14 @@ import {
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import hero2 from "../assets/hero1.jpg";
-import hero1 from "../assets/hero2.jpg";
-import hero3 from "../assets/hero3.jpg";
-import hero4 from "../assets/hero4.jpg";
-import phonehero1 from "../assets/PhoneHero1.jpg";
-import phonehero2 from "../assets/PhoneHero2.jpg";
-import phonehero3 from "../assets/PhoneHero3.jpg";
-import phonehero4 from "../assets/PhoneHero4.jpg";
+import hero1 from "../assets/hero1.svg";
+import hero2 from "../assets/hero2.svg";
+import hero3 from "../assets/hero3.svg";
+import hero4 from "../assets/hero4.svg";
+import phonehero1 from "../assets/1.svg";
+import phonehero2 from "../assets/2.svg";
+import phonehero3 from "../assets/3.svg";
+import phonehero4 from "../assets/4.svg";
 import "../styles/Home.css";
 import emailjs from "@emailjs/browser";
 import "swiper/css";
@@ -32,6 +32,8 @@ import product1 from "../assets/product/SuperJumboSteel.jpg";
 import product2 from "../assets/product/DSC02702.jpg";
 import product3 from "../assets/product/PrinceJumboSteel.jpg";
 import product4 from "../assets/product/DSC02803 copy.jpg";
+import LandingNavbar from "../components/LandingNavBar";
+import { Link } from "react-scroll";
 // eslint-disable-next-line react/prop-types
 const CircularProgressDot = ({ isActive, autoplaySpeed }) => {
   return (
@@ -61,6 +63,7 @@ const CircularProgressDot = ({ isActive, autoplaySpeed }) => {
 
 function LandingPage() {
   const [activeSlide, setActiveSlide] = useState(0);
+  
 
   const settings = {
     dots: false,
@@ -160,18 +163,19 @@ function LandingPage() {
 
   return (
     <div>
+      <LandingNavbar />
       <section className="hero-section z-10 mt-[4.5rem] md:mt-24 relative">
         <Slider ref={sliderRef} {...settings}>
           {slides.map((slide, index) => (
             <div
               key={index}
-              className="relative h-[100vh] md:h-[75vh] lg:h-[60vh] xl:h-[800px] overflow-hidden"
+              className="relative h-[65vh] md:h-[75vh] lg:h-[90vh] xl:h-[100vh] overflow-hidden"
             >
               {/* Slide Image */}
               <img
                 src={isMobile ? slide.mobileImage : slide.desktopImage}
                 alt={slide.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
                 style={{
                   objectPosition: isMobile
                     ? "center"
@@ -195,7 +199,7 @@ function LandingPage() {
         </Slider>
 
         {/* Custom Dots Section */}
-        <div className="custom-dots flex justify-center mt-[-4rem]">
+        <div className="custom-dots flex justify-center md:mt-[-4rem]">
           {slides.map((_, index) => (
             <CircularProgressDot
               key={index}
@@ -205,99 +209,160 @@ function LandingPage() {
           ))}
         </div>
       </section>
+
+      {/* Show Form below Hero on Mobile */}
+      {isMobile && (
+        <section className="bg-gray-100 py-8">
+          <div className="container mx-auto px-6 md:px-12 lg:px-20">
+            <div className="bg-white p-6 rounded-lg shadow-lg">
+              <h2 className="text-2xl font-bold text-[#0e65af] mb-4">
+                Contact Us
+              </h2>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Your Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border rounded-md focus:border-[#0e65af]"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Your Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border rounded-md focus:border-[#0e65af]"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Your Phone</label>
+                  <input
+                    type="text"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border rounded-md focus:border-[#0e65af]"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Your Message</label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border rounded-md focus:border-[#0e65af]"
+                    rows="4"
+                    required
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-[#0e65af] text-white py-2 rounded-md hover:bg-[#2ba5bd]"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      )}
+      
       {/* 🔹 Featured Product Section */}
       <section className="py-16 font-montserrat max-w-[1440px] mx-auto">
-            <div className="container mx-auto px-6 md:px-12 lg:px-20">
-              <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-[#2ba5bd]">
-                  Our Best Products
-                </h2>
-                <p className="text-gray-600 mt-4 text-lg">
-                  Explore our top-selling products crafted with excellence.
-                </p>
-              </div>
-              {/* Product Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-                {/* Product 1 */}
-                <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:-translate-y-2 transition">
-                  <img
-                    src={product1}
-                    alt="Product 1"
-                    className="w-full h-56 object-cover"
-                  />
-                  <div className="p-6 text-center">
-                    <h3 className="text-xl font-semibold">
-                      Super Jumbo Steel
-                    </h3>
-                    <a
-                      href="/contact"
-                      className="mt-4 inline-block bg-[#0e65af] hover:bg-transparent border border-[#0e65af] hover:text-black  text-white px-6 py-2  hover:bg-[#2ba5bd]"
-                    >
-                      Enquiry Now
-                    </a>
-                  </div>
-                </div>
-
-                {/* Product 2 */}
-                <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:-translate-y-2 transition">
-                  <img
-                    src={product2}
-                    alt="Product 2"
-                    className="w-full h-56 object-cover"
-                  />
-                  <div className="p-6 text-center">
-                    <h3 className="text-xl font-semibold">
-                      Super Jumbo White
-                    </h3>
-                    <a
-                      href="/contact"
-                      className="mt-4 inline-block bg-[#0e65af] hover:bg-transparent border border-[#0e65af] hover:text-black  text-white px-6 py-2  hover:bg-[#2ba5bd]"
-                    >
-                      Enquiry Now
-                    </a>
-                  </div>
-                </div>
-
-                {/* Product 3 */}
-                <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:-translate-y-2 transition">
-                  <img
-                    src={product3}
-                    alt="Product 3"
-                    className="w-full h-56 object-cover"
-                  />
-                  <div className="p-6 text-center">
-                    <h3 className="text-xl font-semibold">Prince Jumbo Steel</h3>
-                    <a
-                      href="/contact"
-                      className="mt-4 inline-block bg-[#0e65af] hover:bg-transparent border border-[#0e65af] hover:text-black  text-white px-6 py-2  hover:bg-[#2ba5bd]"
-                    >
-                      Enquiry Now
-                    </a>
-                  </div>
-                </div>
-
-                {/* Product 4 */}
-                <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:-translate-y-2 transition">
-                  <img
-                    src={product4}
-                    alt="Product 4"
-                    className="w-full h-56 object-cover"
-                  />
-                  <div className="p-6 text-center">
-                    <h3 className="text-xl font-semibold">
-                      Prince Jumbo White
-                    </h3>
-                    <a
-                      href="/contact"
-                      className="mt-4 inline-block bg-[#0e65af] hover:bg-transparent border border-[#0e65af] hover:text-black  text-white px-6 py-2  hover:bg-[#2ba5bd]"
-                    >
-                      Enquiry Now
-                    </a>
-                  </div>
-                </div>
+        <div className="container mx-auto px-6 md:px-12 lg:px-20">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-[#2ba5bd]">
+            Top Selling Items
+            </h2>
+            <p className="text-gray-600 mt-4 text-lg">
+              Explore our top-selling products crafted with excellence.
+            </p>
+          </div>
+          {/* Product Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            {/* Product 1 */}
+            <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:-translate-y-2 transition">
+              <img
+                src={product1}
+                alt="Product 1"
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-semibold">Super Jumbo Steel</h3>
+                <Link
+                  to="contact"
+                  className="cursor-pointer mt-4 inline-block bg-[#0e65af] hover:bg-transparent border border-[#0e65af] hover:text-black  text-white px-6 py-2  hover:bg-[#2ba5bd]"
+                >
+                  Enquiry Now
+                </Link>
               </div>
             </div>
-          </section>
+
+            {/* Product 2 */}
+            <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:-translate-y-2 transition">
+              <img
+                src={product2}
+                alt="Product 2"
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-semibold">Super Jumbo White</h3>
+                <Link
+                  to="contact"
+                  className="cursor-pointer mt-4 inline-block bg-[#0e65af] hover:bg-transparent border border-[#0e65af] hover:text-black  text-white px-6 py-2  hover:bg-[#2ba5bd]"
+                >
+                  Enquiry Now
+                </Link>
+              </div>
+            </div>
+
+            {/* Product 3 */}
+            <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:-translate-y-2 transition">
+              <img
+                src={product3}
+                alt="Product 3"
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-semibold">Prince Jumbo Steel</h3>
+                <Link
+                  to="contact"
+                  className="cursor-pointer mt-4 inline-block bg-[#0e65af] hover:bg-transparent border border-[#0e65af] hover:text-black  text-white px-6 py-2  hover:bg-[#2ba5bd]"
+                >
+                  Enquiry Now
+                </Link>
+              </div>
+            </div>
+
+            {/* Product 4 */}
+            <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:-translate-y-2 transition">
+              <img
+                src={product4}
+                alt="Product 4"
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-semibold">Prince Jumbo White</h3>
+                <Link
+                  to="contact"
+                  className="cursor-pointer mt-4 inline-block bg-[#0e65af] hover:bg-transparent border border-[#0e65af] hover:text-black  text-white px-6 py-2  hover:bg-[#2ba5bd]"
+                >
+                  Enquiry Now
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Cards 1 */}
       <section className="py-16 bg-white  font-montserrat max-w-[1440px] mx-auto ">
@@ -313,7 +378,6 @@ function LandingPage() {
             </p>
           </div>
 
-        
           {/* Cards Section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8  font-montserrat">
             {/* Card 1 */}
@@ -514,13 +578,13 @@ function LandingPage() {
                   allowFullScreen=""
                   loading="lazy"
                   title="Company Location"
-                ></iframe>
+                ></iframe>  
               </div>
             </div>
           </div>
         </div>
       </section>
-      <StickyForm />
+      {!isMobile && <StickyForm />}
       <LandingFooter />
     </div>
   );

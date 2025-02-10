@@ -2,7 +2,7 @@
 import { useState } from "react";
 import headerImage from "../assets/About/AboutHero.jpg";
 import aboutImage1 from "../assets/About.jpg";
-import aboutImage3 from "../assets/Gallery/81h0pC98XjL.jpg";
+import aboutImage3 from "../assets/product/IrroningTable.webp";
 import teamImage3 from "../assets/profile.jpg";
 import teamImage1 from "../assets/profile.jpg";
 import teamImage2 from "../assets/profile.jpg";
